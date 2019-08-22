@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/21 17:27:41 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/22 09:20:32 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_pivot_data
 {
 	int		ret;
 	t_node	*pivot;
+	int		small;
 }				t_pivot_data;
 
 
@@ -71,8 +72,8 @@ void	print_ret(int i);
 
 //cmd.c
 void    read_check_cmd(t_stack *stack);
-int	read_cmd_move_node(t_stack *a, t_stack *b);
-int	cmd_check_move(char *buff, t_stack *a, t_stack *b);
+int		read_cmd_move_node(t_stack *a, t_stack *b);
+int		cmd_check_move(char *buff, t_stack *a, t_stack *b);
 //arg.c
 int		str_is_digit(char *str);
 void	make_stack(t_stack *stack, int data);

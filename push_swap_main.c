@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 12:01:38 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/21 17:28:38 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/22 09:22:52 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,13 @@ int main(int ac, char **av)
 
 void	find_pivot(t_data *data, t_pivot_data *p_d)
 {
-	int		small;
-
-	small = 0;
 	p_d->pivot = data->a->top; //anytime we have some stack in a???
 	while (p_d->pivot->next)
 	{
 		if (p_d->pivot->i > p_d->pivot->next->i)
-			small++; //small is the num that show how many nums is smaller than current pivot.
+			p_d->small++; //small is the num that show how many nums is smaller than current pivot.
 			//these ones go to stack B.
-		if ((p_d->ret = check_num_order(data, small))!= 0)
+		if ((p_d->ret = check_num_order(data, p_d->small))!= 0)
 			return (p_d);
 		p_d->pivot = p_d->pivot->next;
 	}
@@ -58,18 +55,58 @@ int		check_num_order(t_data *data, int small)
 {
 	int	time;
 	//small should be power(~~~) -1 or power(~~~~)
-	while (data->a_n > 3 && power(time) <= data->a_n)
+	while (data->a_n > 3 //now this condition is included in main 
+	&& power(time) <= data->a_n)
 		time++;
 	if (small == power(time - 2))
-		return (2);
+		return (2);//not include small
 	else if (small == power(time - 2) - 1)
-		return (1);
+		return (1);//include small one we have to move
 	return (0);
 }
 
-
-void	move_half(t_data *data, int ret) //ret shows we should get the num (>) or (>=)
+void	move_half_1(t_data *data, t_pivot_data *p_d)
 {
-	if (ret == 1)
-		
+	
+}
+
+void	move_half_1(t_data *data, t_pivot_data *p_d)
+{
+	
+}
+
+void	move_half(t_data *data, t_pivot_data *p_d) //ret shows we should get the num (>) or (>=)
+{
+	int	tmp;
+
+	tmp = p_d->small;
+	if (p_d->ret == 1)
+	{
+		//while (data->a->top)//nooooooo cause stack A always has some nodes
+		while (tmp > -1)
+		{
+			if (p_d->pivot->i >= data->a->top->i)
+			{
+				node_push(data->b, data->a->top->i);
+				node_pop(data->a);
+				tmp--;
+			}
+			else
+				move_ra(data->a, data->b);
+		}
+	}
+	else if (p_d->ret == 2)
+	{
+		while (tmp > 0)
+		{
+			if (p_d->pivot->i > data->a->top->i)
+			{
+				node_push(data->b, data->a->top->i);
+				node_pop(data->a);
+				tmp--;
+			}
+			else
+				move_ra(data->a, data->b);
+		}
+	}
 }
