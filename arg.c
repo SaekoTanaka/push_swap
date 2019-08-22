@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:02:33 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/18 15:26:40 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/20 16:06:52 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,24 +68,60 @@ int	node_dup_check(int data, t_stack *stack)
 	return (1);
 }
 
-void	read_arg_make_stack(int ac, char **av, t_stack *stack)
+
+void	make_stack(t_stack *stack, int data)
+{
+	t_node	*new;
+	t_node	*tmp;
+	
+	new = malloc(sizeof(t_node));
+	new->i = data;
+	new->next = NULL;
+	if (stack_is_empty(stack))
+		stack->top = new;
+	else
+	{
+		tmp = stack->top;
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+}
+
+
+int	read_arg_make_stack(int ac, char **av, t_stack *stack)
 {
 	int	i;
 	int	data;
 
-	//if (ac == 1)
-	//	print_ret(0); //error
 	i = 1;
 	while (i < ac && str_is_digit(av[i]))
 	{
 		if (ft_atoi2(av[i], &data) && node_dup_check(data, stack))
-			node_push(stack, data);
+		//node_push(stack, data); //!!!!!!!!!!!!!!!!!!!!!!!!
+		{
+			make_stack(stack, data);
+			//new = malloc(sizeof(t_node));
+			//new->i = data;
+			//new->next = NULL;
+			//if (stack_is_empty(stack))
+			//	stack->top = new;
+			//else
+			//{
+			//	tmp = stack->top;
+			//	while (tmp->next)
+			//		tmp = tmp->next;
+			//	tmp->next = new;
+			//}
+		}
 		else
 			break ;
 		i++;
 	}
 	if (ac == 1 || ac != i)
-		print_ret(0); //error
-	//else
-	//	print_ret(0); //error
+	{
+		print_ret(0);
+		return (0);
+	}
+	return (1);
 }

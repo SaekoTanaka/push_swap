@@ -1,32 +1,74 @@
 #include "push_swap.h"
 
 
-//int main()
-//{
-//	t_stack *a;
-//	t_stack *b;
-//
-////	a = stack_init();
-//	b = stack_init();
-////	node_push(a, 2);
-////	node_push(a, 3);
+int main()
+{
+	t_stack *a;
+	t_stack *b;
+
+//	a = stack_init();
+	a = stack_init();
+    b = stack_init();
+//	node_push(a, 2);
+//	node_push(a, 3);
+//	print_stack(a);
+//printf("aaaaaaaaaa\n");
+	node_push(a, 3);
+	node_push(a, 2);
+	node_push(a, 1);
+	node_push(a, 0);
+	//node_push(a, 4);
+	//node_push(a, 5);
+    //move_pb(a, b);
+    //move_pb(a, b);
+	////node_push(b, 4);
+	//node_push(b, 5);
+	//node_push(b, 6);
+    move_rra(a, b);
+	print_stack(a);
+printf("aaaaaaaaaaaa\n");
+	print_stack(b);
+printf("bbbbbbb\n");
+
+    move_pb(a, b);
+	print_stack(a);
+printf("aaaaaaaaaaaa\n");
+	print_stack(b);
+printf("bbbbbbb\n");
+
+    move_sa(a, b);
+	print_stack(a);
+printf("aaaaaaaaaaaa\n");
+	print_stack(b);
+printf("bbbbbbb\n");
+
+    move_rra(a, b);
+	print_stack(a);
+printf("aaaaaaaaaaaa\n");
+	print_stack(b);
+printf("bbbbbbb\n");
+
+    move_pa(a, b);
+	print_stack(a);
+printf("aaaaaaaaaaaa\n");
+	print_stack(b);
+printf("bbbbbbb\n");
+
+
+//	move_sa(a, b);
 ////	print_stack(a);
 ////printf("aaaaaaaaaa\n");
-//	node_push(b, 1);
-//	//node_push(b, 4);
-//	//node_push(b, 5);
-//	//node_push(b, 6);
-//	print_stack(b);
-//printf("bbbbbbbbbbbb\n");
-//	move_sa( b);
-////	print_stack(a);
-////printf("aaaaaaaaaa\n");
-//	print_stack(b);
-//printf("bbbbbbbbbbbb\n");
-//
-//
-//	return (0);
-//}
+//	print_stack(a);
+//printf("aaaaaaaaaa\n");
+//    print_stack(b);
+//printf("bbbbbbb\n");
+//    move_ra(a, b);
+//	print_stack(a);
+//printf("aaaaaaaaaa\n");
+//    print_stack(b);
+//printf("bbbbbbb\n");
+	return (0);
+}
 
 
 //int main()

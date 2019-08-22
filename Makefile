@@ -1,16 +1,23 @@
-NAME = checker
+CHECK = checker
+P_S = push_swap
 
-SRC = dispatch.c main.c stack.c arg.c cmd.c
+CHECK_SRC = get_next_line/get_next_line.c \
+	dispatch.c check_main.c stack.c arg.c cmd.c \
+
+P_S_SRC = \
 
 FLAG = -Wall -Werror -Wextra -I push_swap.h
 
 FA = -fsanitize=address
 
-all: $(NAME)
+all: $(CHECK) $(P_S)
 
-$(NAME):
+$(CHECK):
 	make -C libft/ re
-	gcc $(FLAG) $(SRC) -Llibft -lft -o $(NAME)
+	gcc $(FLAG) $(CHECK_SRC) -Llibft -lft -o $(NAME)
+
+$(P_S):
+
 
 clean:
 	make -C libft/ clean
