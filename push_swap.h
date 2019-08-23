@@ -93,4 +93,12 @@ void	move_rr(t_stack *a, t_stack *b);
 void	move_rra(t_stack *a, t_stack *b);
 void	move_rrb(t_stack *a, t_stack *b);
 void	move_rrr(t_stack *a, t_stack *b);
+
+//push_swap_main.c
+int    power(int time);
+void	find_pivot(t_data *data, t_pivot_data *p_d);
+int		check_num_order(t_data *data, int small);
+void	move_half_1(t_data *data, t_pivot_data *p_d);
+void	move_half_2(t_data *data, t_pivot_data *p_d);
+void	move_half(t_data *data, t_pivot_data *p_d);
 #endif

@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+int    power(int time)
+{
+    int n;
+
+    n = 1;
+    while (time > 0)
+    {
+        n *= 2;
+        time--;
+    }
+    return (n);
+}
+
 int main(int ac, char **av)
 {
 
@@ -32,8 +45,16 @@ int main(int ac, char **av)
 	{
 		find_pivot(data, p_d);
 		move_half(data, p_d);
+		//did I chenge a_n????
+		data->b_n = p_d->ret == 1 ? p_d->small + 1 : p_d->small;
+		data->a_n -= p_d->ret == 1 ? p_d->small + 1 : p_d->small; 
 	}
-	
+
+	print_stack(data->a);
+printf("aaaaaaaaaaaaaaa\n");
+	print_stack(data->b);
+printf("bbbbbbbbbbbbbbb\n");
+	//b_n should be something
 	return (0);
 }
 
@@ -46,7 +67,7 @@ void	find_pivot(t_data *data, t_pivot_data *p_d)
 			p_d->small++; //small is the num that show how many nums is smaller than current pivot.
 			//these ones go to stack B.
 		if ((p_d->ret = check_num_order(data, p_d->small))!= 0)
-			return (p_d);
+			return ;
 		p_d->pivot = p_d->pivot->next;
 	}
 }
@@ -54,6 +75,8 @@ void	find_pivot(t_data *data, t_pivot_data *p_d)
 int		check_num_order(t_data *data, int small)
 {
 	int	time;
+
+	time = 0;
 	//small should be power(~~~) -1 or power(~~~~)
 	while (data->a_n > 3 //now this condition is included in main 
 	&& power(time) <= data->a_n)

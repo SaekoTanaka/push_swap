@@ -2,18 +2,6 @@
 
 //how to devide the given number 
 
-int    power(int time)
-{
-    int n;
-
-    n = 1;
-    while (time > 0)
-    {
-        n *= 2;
-        time--;
-    }
-    return (n);
-}
 
 
 int main()
