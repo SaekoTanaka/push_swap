@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/22 09:20:32 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/23 19:07:00 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
 
+//checker.struct
 typedef struct		s_node
 {
 	int				i; //data usually void*
@@ -43,6 +44,8 @@ typedef struct	s_command_type
 	t_move_func	*move_cmd;
 }				t_commmand_type;
 
+
+//pushswap.struct
 typedef struct s_data
 {
 	t_stack *a;
@@ -53,9 +56,9 @@ typedef struct s_data
 
 typedef struct s_pivot_data
 {
-	int		ret;
+	int		ret; //the return value is 1 or 2
 	t_node	*pivot;
-	int		small;
+	int		small; //how many small num is in the stack a??
 }				t_pivot_data;
 
 
@@ -95,10 +98,17 @@ void	move_rrb(t_stack *a, t_stack *b);
 void	move_rrr(t_stack *a, t_stack *b);
 
 //push_swap_main.c
-int    power(int time);
+int		power(int time);
 void	find_pivot(t_data *data, t_pivot_data *p_d);
-int		check_num_order(t_data *data, int small);
+int		check_num_order(t_data *data);
+
+//push_swap_move.c
 void	move_half_1(t_data *data, t_pivot_data *p_d);
 void	move_half_2(t_data *data, t_pivot_data *p_d);
 void	move_half(t_data *data, t_pivot_data *p_d);
+
+//push_swap_init.c
+void    init_data(t_data *data, int ac);
+void	init_p_data(t_pivot_data *p_d);
+
 #endif
