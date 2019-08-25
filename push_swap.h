@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/23 19:07:00 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/25 12:29:46 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,10 @@ typedef struct s_data
 
 typedef struct s_pivot_data
 {
-	int		ret; //the return value is 1 or 2
+	int		ret; //the return value is 1 or 2 ///ithink now this num is small_count
 	t_node	*pivot;
 	int		small; //how many small num is in the stack a??
+	int		a_or_b; //a == 0; b == 1;
 }				t_pivot_data;
 
 
@@ -107,8 +108,16 @@ void	move_half_1(t_data *data, t_pivot_data *p_d);
 void	move_half_2(t_data *data, t_pivot_data *p_d);
 void	move_half(t_data *data, t_pivot_data *p_d);
 
-//push_swap_init.c
-void    init_data(t_data *data, int ac);
-void	init_p_data(t_pivot_data *p_d);
+typedef	void	move_func(t_stack *a, t_stack *b);
+typedef struct	s_move_stack{
+	int a_or_b;
+	move_func	*move_func1;
+	move_func	*move_func2;
+//	t_stack		*stack;
+//	int			num_in_stack;
+}				t_move_stack;
+//push_swap_data.c
+t_data    		*init_data(int ac);
+t_pivot_data	*init_p_data(void);
 
 #endif

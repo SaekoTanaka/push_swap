@@ -4,7 +4,7 @@ P_S = push_swap
 CHECK_SRC = get_next_line/get_next_line.c \
 	dispatch.c checker_main.c stack.c arg.c cmd.c \
 
-P_S_SRC = push_swap_main.c push_swap_init.c push_swap_move.c \
+P_S_SRC = push_swap_main.c push_swap_data.c push_swap_move.c \
 
 FLAG = -Wall -Werror -Wextra -I push_swap.h
 

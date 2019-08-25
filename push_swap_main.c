@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/21 12:01:38 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/23 19:33:59 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/25 09:46:30 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,24 @@ int main(int ac, char **av)
 	t_data			*data;
 	t_pivot_data	*p_d;
 
-	data = malloc(sizeof(t_data));
-	p_d = malloc(sizeof(t_pivot_data));
-	init_data(data, ac);
-	init_p_data(p_d);
+	data = init_data(ac);
+	p_d = init_p_data();
 	if (!read_arg_make_stack(ac, av, data->a))
 		return (0);
 	//the number of numbers is ac - 1;
-	while (data->a_n > 4)
-	{
+	//while (data->a_n > 4)
+	//{
 		find_pivot(data, p_d);
-
 printf("small %d\n", p_d->small);
-
 		move_half(data, p_d);
-		//did I chenge a_n????
-		data->b_n = p_d->small;
-		data->a_n -= p_d->small; 
-	}
+		change_data(data, p_d);
+	//}
 
-	print_stack(data->a);
+print_stack(data->a);
 printf("aaaaaaaaaaaaaaa\n");
-	print_stack(data->b);
+print_stack(data->b);
 printf("bbbbbbbbbbbbbbb\n");
-	//b_n should be something
+
 	return (0);
 }
 
@@ -62,13 +56,17 @@ void	find_pivot(t_data *data, t_pivot_data *p_d)
 {
 	t_node	*tmp;
 
-int t = 0;
+int t = 0;//just in case
 
-	p_d->pivot = data->a->top;
-	p_d->ret = check_num_order(data);
+	if (!p_d->a_or_b)
+		p_d->pivot = data->a->top;
+	else
+		p_d->pivot = data->b->top;
+	
+	p_d->ret = get_half_num(data, p_d);
 	//anytime we have some stack in a???
-	tmp = data->a->top;
-	while (p_d->pivot && t < 100)
+	tmp = p_d->pivot; //just tmp = a->top or b->top
+	while (p_d->pivot)
 	{
 		p_d->small = 0;
 		while (tmp) //???? mawaru???/
@@ -82,36 +80,23 @@ int t = 0;
 		if (p_d->small == p_d->ret || p_d->small == p_d->ret - 1) //small and ret are...
 			return ;
 		p_d->pivot = p_d->pivot->next;
-
-
-		t++;
 	}
 }
 
-//void	find_pivot(t_data *data, t_pivot_data *p_d)
-//{
-//	p_d->pivot = data->a->top;
-//	 //anytime we have some stack in a???
-//	while (p_d->pivot)
-//	{
-//
-//		if (p_d->pivot->i > p_d->pivot->next->i)
-//			p_d->small++; //small is the num that show how many nums is smaller than current pivot.
-//			//these ones go to stack B.
-//		if ((p_d->ret = check_num_order(data, p_d->small))!= 0)
-//			return ;
-//		p_d->pivot = p_d->pivot->next;
-//	}
-//}
-
-int		check_num_order(t_data *data)
+int		get_half_num(t_data *data, t_pivot_data *p_d)
 {
 	int	time;
+	int	num;
 
 	time = 0;
+	if (p_d->a_or_b == 0)
+		num = data->a_n;
+	else
+		num = data->b_n;
+	
 	//small should be power(~~~) -1 or power(~~~~)
-	while (data->a_n > 3 //now this condition is included in main 
-	&& power(time) <= data->a_n)
+	while (num > 3 //now this condition is included in main 
+	&& power(time) <= num)
 		time++;
 	//if (small == power(time - 2))
 	//	return (2);//not include small
