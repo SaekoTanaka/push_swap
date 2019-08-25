@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test0824.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
+/*   Updated: 2019/08/25 15:17:21 by stanaka          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-t_stack		*stack_a_or_b(int a_or_b)
+t_stack		*stack_a_or_b(int a_or_b, t_data *data)
 {
 	t_stack *tmp;
 	
@@ -23,7 +35,7 @@ int    power(int time)
 	return (n);
 }
 
-void    sort(int n, int a_or_b)
+void    sort(int n, int a_or_b, t_data *data, t_pivot_data *p_d)
 {
 	int i = 1;
 
@@ -44,20 +56,20 @@ void    sort(int n, int a_or_b)
 //split 
 //in if, chunk has less than 4 numbers(3 or 2)
 // i have to sort these num and if(stack a)ra, if (stack b)keep these order.
-void    split(int n, int a_or_b /*, stack *a, stack *b */)//n is how many numbers the stack has.
+void    split(int n, int a_or_b, t_data *data, t_pivot_data *p_d)//n is how many numbers the stack has.
 {
 	int move_num;
 
 	if (n < 4)
 	{
-		sort(n, a_or_b);
+		sort(n, a_or_b, data, p_d);
 		return ;
 	}
 	move_num = get_split_num(n);
-	find_pivot(n, move_num, a_or_b/*, a, b */);
-	move_node(/*a,b */);
-	split(n - move_num, 0 /*,a ,b */); //stack a //large
-	split(move_num, 1 /*, a, b */); //stack b //small
+	find_pivot(n, move_num, a_or_b, data, p_d);
+	move_node(a_or_b, data, p_d);
+	split(n - move_num, 0, data, p_d); //stack a //large
+	split(move_num, 1, data, p_d); //stack b //small
 }
 
 int     get_split_num(int n)
@@ -72,15 +84,12 @@ int     get_split_num(int n)
 	return (tmp);
 }
 
-void	find_pivot()
+void	find_pivot(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)
 {
 	t_stack	*tmp;
 	t_node	*check_num;
 	
-	if (!a_or_b)//find in stack a
-		tmp = data->a;
-	else
-		tmp = data->b;
+	tmp = stack_a_or_b(a_or_b, data);
 	p_d->pivot = tmp->top;
 	while (p_d->pivot) //small num including this pivot or not??? find small number is move_num.
 	{
@@ -88,7 +97,7 @@ void	find_pivot()
 		p_d->ret = 0;
 		while (check_num)
 		{
-			if (check_num->i <= pivot->i)
+			if (check_num->i <= p_d->pivot->i)
 				p_d->ret++;
 			check_num = check_num->next;
 		}
@@ -98,15 +107,12 @@ void	find_pivot()
 	}
 }
 
-void	move_node()
+void	move_node(int a_or_b, t_data *data, t_pivot_data *p_d)
 {
 	t_stack *tmp;
 	t_node	*check_num;
 	
-	if (!a_or_b)
-		tmp = data->a;
-	else
-		tmp = data->b;
+	tmp = stack_a_or_b(a_or_b, data);
 	check_num = tmp->top;
 	while (check_num)
 	{
@@ -127,6 +133,29 @@ t_move_stack half_cmd[2] = {
 
 int main()
 {
-	split (35, 0);
+	t_data *data;
+	t_pivot_data *p_d;
+	split (35, 0, data, p_d);
+	sort_chunk(data);//
 	return (0);
 }
+
+
+void	sort_chunk(t_data *data)
+{
+	while (!stack_is_empty(data->b)) /////?????????
+	{
+		move_rrb(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_rrb(data->a, data->b);	
+		move_pa(data->a, data->b);
+		move_ra(data->a, data->b);
+		move_ra(data->a, data->b);
+		move_ra(data->a, data->b);
+		move_ra(data->a, data->b);
+	}
+	if (data->a->top) //compare a(top) and a(second)
+		//ra or nothing
+}
+
+//sort //in sort acsend de
