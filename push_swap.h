@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/25 12:29:46 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/25 21:10:33 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,10 @@ void	move_rra(t_stack *a, t_stack *b);
 void	move_rrb(t_stack *a, t_stack *b);
 void	move_rrr(t_stack *a, t_stack *b);
 
-//push_swap_main.c
-int		power(int time);
-void	find_pivot(t_data *data, t_pivot_data *p_d);
-int		check_num_order(t_data *data);
+////push_swap_main.c
+//int		power(int time);
+//void	find_pivot(t_data *data, t_pivot_data *p_d);
+//int		check_num_order(t_data *data);
 
 //push_swap_move.c
 void	move_half_1(t_data *data, t_pivot_data *p_d);
@@ -120,4 +120,23 @@ typedef struct	s_move_stack{
 t_data    		*init_data(int ac);
 t_pivot_data	*init_p_data(void);
 
+
+//test0824.c
+
+typedef void	case_3(void);
+typedef struct s_3_sort_case{
+	case_3		*c;
+}				t_3_sort_case;
+
+
+t_stack		*stack_a_or_b(int a_or_b, t_data *data);
+void	sort_chunk(t_data *data);
+void	move_node(int a_or_b, t_data *data, t_pivot_data *p_d);
+void	find_pivot(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+int     get_split_num(int n);
+void    sort(int a_or_b, t_data *data);
+t_stack		*stack_a_or_b(int a_or_b, t_data *data);
+int    power(int time);
+void	sort_as(t_data *data);
+void	sort_de(t_data *data);
 #endif
