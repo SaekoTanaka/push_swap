@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/25 21:12:13 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/26 12:12:12 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,6 @@ t_move_stack half_cmd[2] = {
 	{1, *move_rb, *move_pa}
 };
 
-t_3_sort_case	sort3[6] = {
-	{0, *case0}, //123
-	{1, *case1}, //132
-	{2, *case2}, //213
-	{3, *case3}, //231
-	{4, *case4}, //312
-	{5, *case5}, //321
-};
 
 t_stack		*stack_a_or_b(int a_or_b, t_data *data)
 {
@@ -53,7 +45,7 @@ void	sort_de(t_data *data)
 
 void    sort(int a_or_b, t_data *data)
 {
-	int i = 1;
+	//int i = 1;
 
 	if (!a_or_b)
 		//printf("a");
@@ -69,15 +61,7 @@ void    sort(int a_or_b, t_data *data)
 	//printf("\n");
 }
 
-void	check_sort_case(t_data *data)
-{
-	if (data->b->top)
-}
 
-void	sort_3(t_data *data)
-{
-	check_sort_case(data);
-}
 
 //split 
 //in if, chunk has less than 4 numbers(3 or 2)
@@ -163,23 +147,45 @@ void	move_node(int a_or_b, t_data *data, t_pivot_data *p_d)
 }
 
 
-int main(int ac, char **av)
+int main(int ac, char **av)//asobi
 {
 	t_data *data;
 	t_pivot_data *p_d;
 	
-	data = init_data(ac);
-	p_d = init_p_data();
+	data = init_data(ac);//ok
+	p_d = init_p_data();//ok
 
-	if (!read_arg_make_stack(ac, av, data->a))
-		return (0);
-	split(ac - 1, 0, data, p_d);
-	sort_chunk(data);
+	if (!read_arg_make_stack(ac, av, data->a))//ok
+		return (0);//ok
+
+//node_push(data->b, 12);
+//node_push(data->b, 34);
+//node_push(data->b, 56);
+//node_push(data->b, 78);
+//node_push(data->b, 55);
+//node_push(data->b, 77);
+
+
+print_stack(data->a);
+printf("aaaaa\n");
+print_stack(data->b);
+printf("bbbbb\n");
+
+	//split(ac - 1, 0, data, p_d);
+	find_pivot(4, 0, data, p_d);
+	move_node(0, data, p_d);
+	//sort_chunk(ac - 1, data);//ok
+
+print_stack(data->a);
+printf("aaaaa\n");
+print_stack(data->b);
+printf("bbbbb\n");
+
 	return (0);
 }
 
 
-void	sort_chunk(t_data *data)
+void	sort_chunk(int i, t_data *data)//ok
 {
 	while (!stack_is_empty(data->b))
 	{
@@ -192,10 +198,27 @@ void	sort_chunk(t_data *data)
 		move_ra(data->a, data->b);
 		move_ra(data->a, data->b);
 	}
-	//maybe if (n % 2 == 0)
-	//	nothing
-	//%2 == 1
-	// move_ra
+	if (i > 3 && i % 2)
+		move_ra(data->a, data->b);
 }
 
-//sort //in sort acsend de
+//int main(int ac, char **av)
+//{
+//	t_data *data;
+//	t_pivot_data *p_d;
+//	
+//	data = init_data(ac);//ok
+//	p_d = init_p_data();//ok
+//
+//	if (!read_arg_make_stack(ac, av, data->a))//ok
+//		return (0);//ok
+//
+//
+//
+//
+//	split(ac - 1, 0, data, p_d);
+//	sort_chunk(ac - 1, data);//ok
+//
+//
+//	return (0);
+//}

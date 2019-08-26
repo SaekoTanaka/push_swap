@@ -5,7 +5,7 @@ CHECK_SRC = get_next_line/get_next_line.c \
 	dispatch.c checker_main.c stack.c arg.c cmd.c \
 
 P_S_SRC = push_swap_main.c push_swap_data.c push_swap_move.c \
-	pushswap_test.c test0824.c \
+	pushswap_test.c test0824.c sort_3.c \
 
 FLAG = -Wall -Werror -Wextra -I push_swap.h
 

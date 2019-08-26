@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/25 21:10:33 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/26 11:58:48 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,14 +123,15 @@ t_pivot_data	*init_p_data(void);
 
 //test0824.c
 
-typedef void	case_3(void);
+typedef void	case_3(t_data *data);
 typedef struct s_3_sort_case{
+	int			i;
 	case_3		*c;
 }				t_3_sort_case;
 
 
 t_stack		*stack_a_or_b(int a_or_b, t_data *data);
-void	sort_chunk(t_data *data);
+void	sort_chunk(int i, t_data *data);
 void	move_node(int a_or_b, t_data *data, t_pivot_data *p_d);
 void	find_pivot(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
 int     get_split_num(int n);
@@ -139,4 +140,13 @@ t_stack		*stack_a_or_b(int a_or_b, t_data *data);
 int    power(int time);
 void	sort_as(t_data *data);
 void	sort_de(t_data *data);
+
+//sort_3.c
+void	sort_3(t_data *data);
+void    case0(t_data *data);
+void    case1(t_data *data);
+void    case2(t_data *data);
+void    case3(t_data *data);
+void    case4(t_data *data);
+void    case5(t_data *data);
 #endif
