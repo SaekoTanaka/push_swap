@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 06:29:42 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/27 07:21:28 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void    sort(int a_or_b, t_data *data)
 	//	i++;
 	//}
 	//printf("\n");
-	print_stack(data->a);
+print_stack(data->a);
 printf("aaaaa\n");
 print_stack(data->b);
 printf("after_sort_bbbbb\n");
@@ -74,26 +74,20 @@ void    split(int n, int a_or_b, t_data *data, t_pivot_data *p_d)//n is how many
 {
 	int move_num;
 
-printf("n:%d\n", n);
-
 	if (n < 4)
 	{
 		if (n == 3)
 			sort_3(data);
-		sort(a_or_b, data);
-
-printf("a_or_b:%d,n:%d\n", a_or_b, n);
-
+		else
+			sort(a_or_b, data);
 		return ;
 	}
 	move_num = get_split_num(n);
 
-printf("move_num:%d\n", move_num);
-
 	find_pivot(move_num, a_or_b, data, p_d);
 	move_node(move_num, a_or_b, data, p_d);
 
-	print_stack(data->a);
+print_stack(data->a);
 printf("aaaaa\n");
 print_stack(data->b);
 printf("bbbbb\n");
@@ -145,8 +139,7 @@ void	move_node(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
 
 	i = 0;
 	tmp = stack_a_or_b(a_or_b, data);
-int t = 0;
-	while (i < move_num && t < 10)
+	while (i < move_num)
 	{
 		if (tmp->top->i > p_d->pivot->i)
 			half_cmd[a_or_b].move_func1(data->a, data->b);
@@ -157,9 +150,7 @@ int t = 0;
 			i++;
 		}
 		tmp = stack_a_or_b(a_or_b, data);	
-t++;
 	}
-	printf("t:%d\n",t);
 }
 
 
@@ -181,14 +172,9 @@ int main(int ac, char **av)//asobi
 //node_push(data->b, 55);
 //node_push(data->b, 77);
 
-
-print_stack(data->a);
-printf("iiiiiiiaaaaa\n");
-print_stack(data->b);
-printf("bbbbb\n");
-
 	split(ac - 1, 0, data, p_d);
 	sort_chunk(ac - 1, data);
+
 print_stack(data->a);
 printf("ffffffaaaaa\n");
 print_stack(data->b);
@@ -198,22 +184,34 @@ printf("bbbbb\n");
 }
 
 
-void	sort_chunk(int i, t_data *data)//ok
+//void	sort_chunk(int i, t_data *data)//ok
+//{
+//	while (!stack_is_empty(data->b))
+//	{
+//		move_rrb(data->a, data->b);
+//		move_pa(data->a, data->b);
+//		move_rrb(data->a, data->b);	
+//		move_pa(data->a, data->b);
+//		move_ra(data->a, data->b);
+//		move_ra(data->a, data->b);
+//		move_ra(data->a, data->b);
+//		move_ra(data->a, data->b);
+//	}
+//	if (i > 3 && i % 2)
+//		move_ra(data->a, data->b);
+//}
+
+void	sort_chunk(int i, t_data *data)
 {
+	t_node	*tmp_top;
+
 	while (!stack_is_empty(data->b))
 	{
-		move_rrb(data->a, data->b);
-		move_pa(data->a, data->b);
-		move_rrb(data->a, data->b);	
-		move_pa(data->a, data->b);
-		move_ra(data->a, data->b);
-		move_ra(data->a, data->b);
-		move_ra(data->a, data->b);
-		move_ra(data->a, data->b);
+		tmp_top = data->a->top;
+		while (tmp_top->i data->b->top)
 	}
-	if (i > 3 && i % 2)
-		move_ra(data->a, data->b);
 }
+
 
 //int main(int ac, char **av)
 //{
