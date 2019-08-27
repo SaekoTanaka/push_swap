@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 07:21:28 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/27 12:03:40 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_move_stack half_cmd[2] = {
 	{0, *move_ra, *move_pb},
-	{1, *move_rb, *move_pa}
+	{1, *move_pa, *move_rb}
 };
 
 
@@ -173,7 +173,7 @@ int main(int ac, char **av)//asobi
 //node_push(data->b, 77);
 
 	split(ac - 1, 0, data, p_d);
-	sort_chunk(ac - 1, data);
+	//sort_chunk(ac - 1, data);
 
 print_stack(data->a);
 printf("ffffffaaaaa\n");
@@ -201,17 +201,51 @@ printf("bbbbb\n");
 //		move_ra(data->a, data->b);
 //}
 
-void	sort_chunk(int i, t_data *data)
+void	small_num(t_data *data)
 {
-	t_node	*tmp_top;
-
-	while (!stack_is_empty(data->b))
-	{
-		tmp_top = data->a->top;
-		while (tmp_top->i data->b->top)
-	}
+	move_pa(data->a, data->b);
+	move_pa(data->a, data->b);
 }
 
+//void	sort_chunk(int i, t_data *data)
+//{
+//	t_node	*a_next_top;
+//	int n;
+//
+//	n = 0;
+//	while (!stack_is_empty(data->b) && i > 3 && n < 100)
+//	{
+//		a_next_top = data->a->top;
+//		//if (data->a->top->next->i > data->a->top->next->next->i && !(i % 2))
+//		//	a_next_top = data->a->top->next->next;
+//		//else
+//		//	a_next_top = data->a->top->next->next->next;
+//		while (a_next_top->next && a_next_top->i < a_next_top->next->i)
+//			a_next_top = a_next_top->next;
+//		if (a_next_top->next == NULL)
+//			small_num(data);
+//		else
+//		{
+//			a_next_top = a_next_top->next;////////////////////
+//		}
+//		
+//		while (a_next_top->i < data->b->top->i)
+//		{
+//			move_pa(data->a, data->b);
+//			move_ra(data->a, data->b);
+//		}
+//		while (a_next_top->i != data->a->top->i)
+//			move_ra(data->a, data->b);
+//	n++;
+//	}
+//}
+//
+//
+
+//void	sort_chunk(int i, t_data *data)
+//{
+//	
+//}
 
 //int main(int ac, char **av)
 //{

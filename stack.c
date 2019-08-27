@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:02:18 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 06:21:48 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/27 11:39:52 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	print_stack(t_stack *stack)
 	tmp = stack->top;
 	while (tmp)
 	{
-		printf("%d\n", tmp->i);
+		printf("%d ", tmp->i);
 		tmp = tmp->next;
 	}
+	printf("\n");
 }
 
 int		stack_order_check(t_stack *a, t_stack *b)
