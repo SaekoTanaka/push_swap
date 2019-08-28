@@ -6,13 +6,15 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 17:53:41 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/28 10:49:10 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-
+t_move_stack half_cmd1[2] = {
+	{0, *move_ra, *move_pb, *move_rra},
+	{1, *move_pa, *move_rb, *move_rrb}
+};
 
 t_stack		*stack_a_or_b(int a_or_b, t_data *data)
 {
@@ -40,6 +42,17 @@ void	sort_de(t_data *data)
 	move_rb(data->a, data->b);
 	move_rb(data->a, data->b);
 }
+
+//void	sort_both(t_data *data)
+//{
+//	t_node *tmp;
+//
+//	tmp = data->a->top;
+//	if (tmp->i > tmp->next->i)
+//	{
+//		if ()
+//	}
+//}
 
 void    sort(int a_or_b, t_data *data)
 {
@@ -154,11 +167,11 @@ void	move_node(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)
 	while (i < n && move_num > 0)
 	{
 		if (tmp->top->i > p_d->pivot->i)
-			half_cmd[a_or_b].move_func1(data->a, data->b);
+			half_cmd1[a_or_b].move_func1(data->a, data->b);
 
 		else
 		{
-			half_cmd[a_or_b].move_func2(data->a, data->b);
+			half_cmd1[a_or_b].move_func2(data->a, data->b);
 			//i++;
 		}
 		tmp = stack_a_or_b(a_or_b, data);
@@ -220,40 +233,108 @@ void	small_num(t_data *data)
 	move_pa(data->a, data->b);
 }
 
-//void	sort_chunk(int i, t_data *data)
-//{
+void	sort_chunk(int i, t_data *data)
+{
 //	t_node	*a_next_top;
-//	int n;
+	int n;
+
+	t_node *b_top;
+
+	if (i <= 3)
+		return ;
+	b_top = data->b->top;
+	while (!stack_is_empty(data->a))
+		move_pb(data->a, data->b);
+
+print_stack(data->a);
+printf("move_to_b  aaaaa\n");
+print_stack(data->b);
+printf("bbbbb\n");
+printf("%d\n", b_top->i);
+	while (data->b->top->i < b_top->i)
+		move_rb(data->a, data->b);
+print_stack(data->a);
+printf("move_to_b  aaaaa\n");
+print_stack(data->b);
+printf("bbbbb\n");
+	if (i % 2)
+	{
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+	}
+	else
+	{
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+		move_pa(data->a, data->b);
+
+	}
+	n = 0;
+	t_node *b_bottom;
+	while (!stack_is_empty(data->b) && n < i && data->b->top->next)
+	{
+		b_bottom = data->b->top;
+		while (b_bottom->next)
+			b_bottom = b_bottom->next;
+		if (data->b->top->i < b_bottom->i)
+		{
+			move_rrb(data->a, data->b);
+			move_rrb(data->a, data->b);
+		}
+		else
+		{
+			move_pb(data->a, data->b);
+			move_pb(data->a, data->b);
+		}
+		
+		b_bottom = data->b->top;
+		while (b_bottom->next)
+			b_bottom = b_bottom->next;
+		printf("here\n");
+		while (data->b->top->next && b_bottom->i < data->b->top->i)
+			move_pa(data->a, data->b);
+	n++;
+	printf("n:%d\n", n);
+	}
+			printf("he2re\n");
+
+	if (i > 4)
+		move_pa(data->a, data->b);
+
+	//n = 0;
+	//while (!stack_is_empty(data->b) && i > 3 && n < 50)
+	//{
+	//	//a_next_top = data->a->top;
+	//	while (a_next_top->next && a_next_top->i < a_next_top->next->i)
+	//		a_next_top = a_next_top->next;
+	//	if (a_next_top->next == NULL)
+	//	{
+	//		small_num(data);
+	//		return ;
+	//	}
+	//	else
+	//		a_next_top = a_next_top->next;////////////////////
+	//	
+	//	while (a_next_top->i < data->b->top->i)
+	//		move_pa(data->a, data->b);
+	//	while (a_next_top->i != data->a->top->i)
+	//		move_ra(data->a, data->b);
+	//n++;
 //
-//	n = 0;
-//	while (!stack_is_empty(data->b) && i > 3 && n < 100)
-//	{
-//		a_next_top = data->a->top;
-//		//if (data->a->top->next->i > data->a->top->next->next->i && !(i % 2))
-//		//	a_next_top = data->a->top->next->next;
-//		//else
-//		//	a_next_top = data->a->top->next->next->next;
-//		while (a_next_top->next && a_next_top->i < a_next_top->next->i)
-//			a_next_top = a_next_top->next;
-//		if (a_next_top->next == NULL)
-//			small_num(data);
-//		else
-//		{
-//			a_next_top = a_next_top->next;////////////////////
-//		}
-//		
-//		while (a_next_top->i < data->b->top->i)
-//		{
-//			move_pa(data->a, data->b);
-//			move_ra(data->a, data->b);
-//		}
-//		while (a_next_top->i != data->a->top->i)
-//			move_ra(data->a, data->b);
-//	n++;
-//	}
-//}
-//
-//
+
+print_stack(data->a);
+printf("             aaaaa\n");
+print_stack(data->b);
+printf("             bbbbb\n");
+
+	
+}
+
+
 
 //void	sort_chunk(int i, t_data *data)
 //{

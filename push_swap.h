@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 17:54:02 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/28 09:01:03 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,5 +154,6 @@ void    case5(t_data *data);
 //0827
 void	split1(int a, int b, t_data *data, t_pivot_data *p_d);
 void	find_p(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+void	m_node(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
 
 #endif
