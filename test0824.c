@@ -6,16 +6,12 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 12:03:40 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/27 17:53:41 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_move_stack half_cmd[2] = {
-	{0, *move_ra, *move_pb},
-	{1, *move_pa, *move_rb}
-};
 
 
 t_stack		*stack_a_or_b(int a_or_b, t_data *data)
@@ -31,7 +27,7 @@ t_stack		*stack_a_or_b(int a_or_b, t_data *data)
 
 void	sort_as(t_data *data)
 {
-	if (data->a->top > data->a->top->next)
+	if (data->a->top->i > data->a->top->next->i)
 		move_sa(data->a, data->b);
 	move_ra(data->a, data->b);
 	move_ra(data->a, data->b);	
@@ -39,8 +35,10 @@ void	sort_as(t_data *data)
 
 void	sort_de(t_data *data)
 {
-	if (data->b->top < data->b->top->next)
+	if (data->b->top->i < data->b->top->next->i)
 		move_sb(data->a, data->b);
+	move_rb(data->a, data->b);
+	move_rb(data->a, data->b);
 }
 
 void    sort(int a_or_b, t_data *data)
@@ -60,9 +58,9 @@ void    sort(int a_or_b, t_data *data)
 	//}
 	//printf("\n");
 print_stack(data->a);
-printf("aaaaa\n");
+printf("       aaaaa\n");
 print_stack(data->b);
-printf("after_sort_bbbbb\n");
+printf("after_sort_bbbbb\n\n");
 }
 
 
@@ -77,20 +75,26 @@ void    split(int n, int a_or_b, t_data *data, t_pivot_data *p_d)//n is how many
 	if (n < 4)
 	{
 		if (n == 3)
-			sort_3(data);
+			//sort_3(data);
+			printf("here3\n");
 		else
-			sort(a_or_b, data);
+			//sort(a_or_b, data);
+			printf("here2\n");
 		return ;
 	}
 	move_num = get_split_num(n);
 
-	find_pivot(move_num, a_or_b, data, p_d);
-	move_node(move_num, a_or_b, data, p_d);
+	find_pivot(n, move_num, a_or_b, data, p_d);
+	move_node(n, move_num, a_or_b, data, p_d);
 
 print_stack(data->a);
 printf("aaaaa\n");
+printf("n:%d\n", n);
+printf("a_or_b:%d\n", a_or_b);
+printf("move_num:%d\n",move_num);
 print_stack(data->b);
-printf("bbbbb\n");
+printf("bbbbb\n\n");
+
 	split(n - move_num, 0, data, p_d); //stack a //large
 	split(move_num, 1, data, p_d); //stack b //small
 }
@@ -109,37 +113,45 @@ int     get_split_num(int n)//ok
 	return (tmp);
 }
 
-void	find_pivot(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
+void	find_pivot(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
 {
 	t_stack	*tmp;
 	t_node	*check_num;
+	int i;
+	int j;
 	
 	tmp = stack_a_or_b(a_or_b, data);
 	p_d->pivot = tmp->top;
-	while (p_d->pivot) //small num including this pivot or not??? find small number is move_num.
+	j = 0;
+	while (p_d->pivot && j < n) //small num including this pivot or not??? find small number is move_num.
 	{
+		printf("here9\n");
 		check_num = tmp->top;
 		p_d->ret = 0;
-		while (check_num)
+		i = 0;//
+		while (check_num && i < n)//
 		{
 			if (check_num->i <= p_d->pivot->i)
 				p_d->ret++;
 			check_num = check_num->next;
+			i++;
 		}
 		if (p_d->ret == move_num)
 			return ;
 		p_d->pivot = p_d->pivot->next;
+		j++;
 	}
 }
 
-void	move_node(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
+void	move_node(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
 {
 	t_stack *tmp;
 	int		i;
 
 	i = 0;
 	tmp = stack_a_or_b(a_or_b, data);
-	while (i < move_num)
+	//while (i < move_num)
+	while (i < n && move_num > 0)
 	{
 		if (tmp->top->i > p_d->pivot->i)
 			half_cmd[a_or_b].move_func1(data->a, data->b);
@@ -147,42 +159,43 @@ void	move_node(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d)//ok
 		else
 		{
 			half_cmd[a_or_b].move_func2(data->a, data->b);
-			i++;
+			//i++;
 		}
-		tmp = stack_a_or_b(a_or_b, data);	
+		tmp = stack_a_or_b(a_or_b, data);
+		i++;	
 	}
 }
 
 
-int main(int ac, char **av)//asobi
-{
-	t_data *data;
-	t_pivot_data *p_d;
-	
-	data = init_data(ac);//ok
-	p_d = init_p_data();//ok
-
-	if (!read_arg_make_stack(ac, av, data->a))//ok
-		return (0);//ok
-
-//node_push(data->b, 12);
-//node_push(data->b, 34);
-//node_push(data->b, 56);
-//node_push(data->b, 78);
-//node_push(data->b, 55);
-//node_push(data->b, 77);
-
-	split(ac - 1, 0, data, p_d);
-	//sort_chunk(ac - 1, data);
-
-print_stack(data->a);
-printf("ffffffaaaaa\n");
-print_stack(data->b);
-printf("bbbbb\n");
-
-	return (0);
-}
-
+//int main(int ac, char **av)//asobi
+//{
+//	t_data *data;
+//	t_pivot_data *p_d;
+//	
+//	data = init_data(ac);//ok
+//	p_d = init_p_data();//ok
+//
+//	if (!read_arg_make_stack(ac, av, data->a))//ok
+//		return (0);//ok
+//
+////node_push(data->b, 12);
+////node_push(data->b, 34);
+////node_push(data->b, 56);
+////node_push(data->b, 78);
+////node_push(data->b, 55);
+////node_push(data->b, 77);
+////split(ac - 1, 0);
+//	split(ac - 1, 0, data, p_d);
+//	//sort_chunk(ac - 1, data);
+//
+//print_stack(data->a);
+//printf("ffffffaaaaa\n");
+//print_stack(data->b);
+//printf("bbbbb\n");
+//
+//	return (0);
+//}
+//
 
 //void	sort_chunk(int i, t_data *data)//ok
 //{

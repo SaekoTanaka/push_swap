@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 07:51:49 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/27 17:54:02 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct	s_move_stack{
 	int a_or_b;
 	move_func	*move_func1;
 	move_func	*move_func2;
+	move_func	*move_func3;
 //	t_stack		*stack;
 //	int			num_in_stack;
 }				t_move_stack;
@@ -132,8 +133,8 @@ typedef struct s_3_sort_case{
 
 t_stack		*stack_a_or_b(int a_or_b, t_data *data);
 void	sort_chunk(int i, t_data *data);
-void	move_node(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
-void	find_pivot(int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+void	move_node(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+void	find_pivot(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
 int     get_split_num(int n);
 void    sort(int a_or_b, t_data *data);
 t_stack		*stack_a_or_b(int a_or_b, t_data *data);
@@ -149,4 +150,9 @@ void    case2(t_data *data);
 void    case3(t_data *data);
 void    case4(t_data *data);
 void    case5(t_data *data);
+
+//0827
+void	split1(int a, int b, t_data *data, t_pivot_data *p_d);
+void	find_p(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+
 #endif
