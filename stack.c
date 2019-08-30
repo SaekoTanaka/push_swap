@@ -6,30 +6,29 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/20 16:02:18 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/27 11:39:52 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 21:05:27 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-int     stack_is_empty(t_stack *stack)
+int			stack_is_empty(t_stack *stack)
 {
 	if (stack->top == NULL)
 		return (1);
 	return (0);
 }
 
-t_stack    *stack_init(void)
+t_stack		*stack_init(void)
 {
-	t_stack *stack;
+	t_stack	*stack;
 
 	stack = malloc(sizeof(t_stack));
 	stack->top = NULL;
 	return (stack);
 }
 
-void    node_push(t_stack *stack, int data)
+void		node_push(t_stack *stack, int data)
 {
 	t_node *new;
 
@@ -39,7 +38,7 @@ void    node_push(t_stack *stack, int data)
 	stack->top = new;
 }
 
-int		node_pop(t_stack *stack)
+int			node_pop(t_stack *stack)
 {
 	int		data;
 	t_node	*tmp;
@@ -48,40 +47,5 @@ int		node_pop(t_stack *stack)
 	tmp = stack->top->next;
 	free(stack->top);
 	stack->top = tmp;
-	return(data);
-}
-
-void	print_stack(t_stack *stack)
-{
-	t_node	*tmp;
-
-	tmp = stack->top;
-	while (tmp)
-	{
-		printf("%d ", tmp->i);
-		tmp = tmp->next;
-	}
-	printf("\n");
-}
-
-int		stack_order_check(t_stack *a, t_stack *b)
-{
-	t_node	*tmp;
-	int		small_data;
-	int		big_data;
-
-	if (b->top != NULL)
-		return (0);
-	if (a->top == NULL || a->top->next == NULL)
-		return (1);
-	tmp = a->top;
-	while (tmp->next)
-	{
-		small_data = tmp->i;
-		tmp = tmp->next;
-		big_data = tmp->i;
-		if (small_data >= big_data)
-			return (0);
-	}
-	return (1);
+	return (data);
 }

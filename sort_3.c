@@ -6,18 +6,18 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 11:32:46 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 15:41:05 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 21:02:17 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_move_stack c1[2] = {
+struct s_move_stack		c1[2] = {
 	{0, *move_ra, *move_pb, *move_sa},
 	{1, *move_pa, *move_rb, *move_sb}
 };
 
-t_3_sort_case	sort3[12] = {
+struct s_3_sort_case	sort3[12] = {
 	{0, *case0},
 	{1, *case1},
 	{2, *case2},
@@ -32,7 +32,7 @@ t_3_sort_case	sort3[12] = {
 	{11, *case11},
 };
 
-int	check_sort_case(int a_or_b, t_data *data)
+int						check_sort_case(int a_or_b, t_data *data)
 {
 	t_node	*first;
 	t_node	*second;
@@ -50,17 +50,17 @@ int	check_sort_case(int a_or_b, t_data *data)
 		else if (first->i < third->i)
 			return (1 + 6 * a_or_b);
 		else
-			return (3 + 6 * a_or_b);		
+			return (3 + 6 * a_or_b);
 	}
-	if(second->i > third->i)
-		return(5 + 6 * a_or_b);
+	if (second->i > third->i)
+		return (5 + 6 * a_or_b);
 	else if (first->i > third->i)
 		return (4 + 6 * a_or_b);
 	else
 		return (2 + 6 * a_or_b);
 }
 
-void	sort_3(int a_or_b, t_data *data)
+void					sort_3(int a_or_b, t_data *data)
 {
 	int	i;
 
@@ -68,20 +68,18 @@ void	sort_3(int a_or_b, t_data *data)
 	sort3[i].c(data);
 }
 
-//void    case0(t_data *data)
-//{
-//    move_ra(data->a, data->b);
-//    move_ra(data->a, data->b);
-//    move_ra(data->a, data->b);
-//}
-
-void	case0(t_data *data)
+void					case0(t_data *data)
 {
 	if (data != NULL)
 		return ;
 }
 
-
-
-
-
+void					case6(t_data *data)
+{
+	move_pa(data->a, data->b);
+	move_ra(data->a, data->b);
+	move_sb(data->a, data->b);
+	move_pa(data->a, data->b);
+	move_pa(data->a, data->b);
+	move_rra(data->a, data->b);
+}

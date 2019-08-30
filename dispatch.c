@@ -6,13 +6,13 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:43:52 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 16:31:28 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 20:53:10 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void    move_sa(t_stack *a, t_stack *b)
+void	move_sa(t_stack *a, t_stack *b)
 {
 	t_node *tmp;
 
@@ -25,7 +25,7 @@ void    move_sa(t_stack *a, t_stack *b)
 	printf("sa\n");
 }
 
-void    move_sb(t_stack *a, t_stack *b)
+void	move_sb(t_stack *a, t_stack *b)
 {
 	t_node *tmp;
 
@@ -54,6 +54,5 @@ void	move_ss(t_stack *a, t_stack *b)
 	b->top->next = b->top->next->next;
 	tmp->next = b->top;
 	b->top = tmp;
-
 	printf("ss\n");
 }

@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 11:33:49 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 16:19:32 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 20:54:15 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	move_rrb(t_stack *a, t_stack *b)
 
 	if (!a || b->top == NULL || b->top->next == NULL)
 		return ;
-	if (b->top->next->next == NULL) // 2 nodes
+	if (b->top->next->next == NULL)
 		move_sb(a, b);
 	else
 	{

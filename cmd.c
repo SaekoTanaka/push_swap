@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 14:02:38 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/21 12:20:11 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 20:52:23 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,34 +26,18 @@ struct s_command_type cmd_type[11] = {
 	{"rrr", &move_rrr},
 };
 
-//int	read_cmd_move_node(t_stack *a, t_stack *b)
-//{
-//	int     ret;
-//	char    buff[6];
-//
-//	while ((ret = read(0, buff, 5)) > 0)
-//	{
-//		buff[ret] = '\0';
-//		if (ret > 4 || !cmd_check_move(buff, a, b))
-//			return(0); //error
-//	}
-//	return(1); //match every cmd
-//}
-
 int	read_cmd_move_node(t_stack *a, t_stack *b)
 {
-	int     check;
+	int		check;
 	char	*line;
-	
+
 	check = 1;
 	while (get_next_line(0, &line) > 0)
 	{
-		//printf("line:%s\n", line);
 		if (!cmd_check_move(line, a, b))
-			//check -= 1;
-			return(0); //error
+			return (0);
 	}
-	return(1); //match every cmd
+	return (1);
 }
 
 int	cmd_check_move(char *buff, t_stack *a, t_stack *b)
@@ -66,9 +50,9 @@ int	cmd_check_move(char *buff, t_stack *a, t_stack *b)
 		if (ft_strequ(cmd_type[i].cmd, buff))
 		{
 			cmd_type[i].move_cmd(a, b);
-			return (1); //match something
+			return (1);
 		}
 		i++;
 	}
-	return (0); //it doesnot match
+	return (0);
 }

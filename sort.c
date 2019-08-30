@@ -6,19 +6,11 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 22:05:11 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 16:31:45 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 21:27:12 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-//void	sort_as(t_data *data)
-//{
-//	if (data->a->top->i > data->a->top->next->i)
-//		move_sa(data->a, data->b);
-//	//move_ra(data->a, data->b);
-//	//move_ra(data->a, data->b);
-//}
 
 void	sort_de(t_data *data)
 {
@@ -28,7 +20,7 @@ void	sort_de(t_data *data)
 	move_pa(data->a, data->b);
 }
 
-void    sort(int a_or_b, t_data *data)
+void	sort(int a_or_b, t_data *data)
 {
 	if (!a_or_b)
 		sort_as(data);
@@ -41,11 +33,8 @@ void	sort_as(t_data *data)
 	t_node *tmp;
 
 	tmp = data->a->top;
-
 	if (tmp->i > tmp->next->i && data->b->top->i < data->b->top->next->i)
 		move_ss(data->a, data->b);
 	else if (tmp->i > tmp->next->i)
 		move_sa(data->a, data->b);
-	//move_ra(data->a, data->b);
-	//move_ra(data->a, data->b);
 }

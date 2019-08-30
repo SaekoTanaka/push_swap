@@ -6,47 +6,41 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/25 14:55:43 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 16:22:14 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 21:11:59 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+int			power(int time)
+{
+	int		n;
+
+	n = 1;
+	while (time > 0)
+	{
+		n *= 2;
+		time--;
+	}
+	return (n);
+}
+
 t_stack		*stack_a_or_b(int a_or_b, t_data *data)
 {
-	t_stack *tmp;
-	
+	t_stack	*tmp;
+
 	if (!a_or_b)
 		tmp = data->a;
 	else
 		tmp = data->b;
-		return (tmp);
+	return (tmp);
 }
 
-//int     get_split_num(int n)
-//{
-//	int time;
-//	int tmp;
-//
-//	time = 0;
-//	while (power(time) <= n)
-//		time++;
-//	tmp = power(time - 2);
-//	if (tmp == 1)
-//		tmp++;
-//	return (tmp);
-//}
-
-int	get_split_num(int n)
+void		b_sort(t_data *data, int i)
 {
-	return (n / 2);
-}
-
-void	b_sort(t_data *data, int i)
-{
-	t_node *b_bottom;
+	t_node	*b_bottom;
 	int		n;
-	
+
 	n = 0;
 	while (!stack_is_empty(data->b) && n < i && data->b->top->next)
 	{
@@ -68,10 +62,10 @@ void	b_sort(t_data *data, int i)
 		move_pa(data->a, data->b);
 }
 
-void	sort_chunk(int i, t_data *data)
+void		sort_chunk(int i, t_data *data)
 {
-	t_node *b_top;
-	
+	t_node	*b_top;
+
 	if (i <= 3)
 		return ;
 	b_top = data->b->top;
