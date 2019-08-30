@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 10:36:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/24 10:39:28 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 08:02:40 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ t_pivot_data	*init_p_data(void)
 	p_d->pivot = malloc(sizeof(t_node));
 	p_d->pivot->i = 0;
 	p_d->pivot->next = NULL;
-	p_d->small = 0;
-	p_d->a_or_b = 0; //a
+	//p_d->small = 0;
+	p_d->a_or_b = 0;
 	return (p_d);
 }
 
-void	change_data(t_data *data, t_pivot_data *p_d)
-{
-	data->b_n = p_d->small;
-	data->a_n -= p_d->small;
-	p_d->small = 0;//??? 
-}
+//void	change_data(t_data *data, t_pivot_data *p_d)
+//{
+//	data->b_n = p_d->small;
+//	data->a_n -= p_d->small;
+//	p_d->small = 0; 
+//}

@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/28 09:01:03 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/29 15:09:20 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 //checker.struct
 typedef struct		s_node
 {
-	int				i; //data usually void*
+	int				i;
 	struct s_node	*next;
 }					t_node;
 
@@ -56,10 +56,10 @@ typedef struct s_data
 
 typedef struct s_pivot_data
 {
-	int		ret; //the return value is 1 or 2 ///ithink now this num is small_count
+	int		ret;
 	t_node	*pivot;
-	int		small; //how many small num is in the stack a??
-	int		a_or_b; //a == 0; b == 1;
+//	int		small;
+	int		a_or_b;
 }				t_pivot_data;
 
 
@@ -98,11 +98,6 @@ void	move_rra(t_stack *a, t_stack *b);
 void	move_rrb(t_stack *a, t_stack *b);
 void	move_rrr(t_stack *a, t_stack *b);
 
-////push_swap_main.c
-//int		power(int time);
-//void	find_pivot(t_data *data, t_pivot_data *p_d);
-//int		check_num_order(t_data *data);
-
 //push_swap_move.c
 void	move_half_1(t_data *data, t_pivot_data *p_d);
 void	move_half_2(t_data *data, t_pivot_data *p_d);
@@ -114,16 +109,22 @@ typedef struct	s_move_stack{
 	move_func	*move_func1;
 	move_func	*move_func2;
 	move_func	*move_func3;
-//	t_stack		*stack;
-//	int			num_in_stack;
 }				t_move_stack;
+
+typedef struct	s_move_stack_2{
+	int a_or_b;
+	move_func	*move_func1;
+	move_func	*move_func2;
+	move_func	*move_func3;
+	move_func	*move_func4;
+}				t_move_stack_2;
+
 //push_swap_data.c
 t_data    		*init_data(int ac);
 t_pivot_data	*init_p_data(void);
 
 
 //test0824.c
-
 typedef void	case_3(t_data *data);
 typedef struct s_3_sort_case{
 	int			i;
@@ -143,17 +144,27 @@ void	sort_as(t_data *data);
 void	sort_de(t_data *data);
 
 //sort_3.c
-void	sort_3(t_data *data);
+void	sort_3(int a_or_b, t_data *data);
 void    case0(t_data *data);
 void    case1(t_data *data);
 void    case2(t_data *data);
 void    case3(t_data *data);
 void    case4(t_data *data);
 void    case5(t_data *data);
+void    case6(t_data *data);
+void    case7(t_data *data);
+void    case8(t_data *data);
+void    case9(t_data *data);
+void    case10(t_data *data);
+void    case11(t_data *data);
 
 //0827
 void	split1(int a, int b, t_data *data, t_pivot_data *p_d);
 void	find_p(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
 void	m_node(int n, int move_num, int a_or_b, t_data *data, t_pivot_data *p_d);
+
+void	m_pa(t_stack *a, t_stack *b, int i);
+void	m_pb(t_stack *a, t_stack *b, int i);
+void	m_rrb(t_stack *a, t_stack *b, int i);
 
 #endif
