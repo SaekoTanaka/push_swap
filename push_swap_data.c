@@ -6,13 +6,13 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 10:36:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 21:17:05 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/30 12:16:12 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_data				*init_data(int ac)
+t_data				*init_data(void)
 {
 	t_data			*data;
 

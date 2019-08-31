@@ -6,7 +6,7 @@
 /*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 10:44:01 by stanaka           #+#    #+#             */
-/*   Updated: 2019/08/29 21:26:24 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/30 19:34:59 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,10 @@ void				print_ret(int i);
 void    			read_check_cmd(t_stack *stack);
 int					read_cmd_move_node(t_stack *a, t_stack *b);
 int					cmd_check_move(char *buff, t_stack *a, t_stack *b);
-int					str_is_digit(char *str);
-void				make_stack(t_stack *stack, int data);
+int					str_is_digit(char **str);
+int					make_stack(t_stack *stack, int arr);
 int					read_arg_make_stack(int ac, char **av, t_stack *stack);
-int					ft_atoi2(char *str, int *data);
+int					ft_atoi2(char **str, t_stack *stack);
 int					node_dup_check(int data, t_stack *stack);
 void    			move_sa(t_stack *a, t_stack *b);
 void    			move_sb(t_stack *a, t_stack *b);
@@ -95,7 +95,7 @@ typedef struct		s_move_stack{
 	move_func		*move_func3;
 }					t_move_stack;
 
-t_data    			*init_data(int ac);
+t_data    			*init_data(void);
 t_pivot_data		*init_p_data(void);
 typedef void		case_3(t_data *data);
 typedef struct 		s_3_sort_case{

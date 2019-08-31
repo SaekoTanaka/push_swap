@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: stanaka <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: stanaka <stanaka@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/08 12:51:34 by stanaka           #+#    #+#             */
-/*   Updated: 2019/03/21 18:25:06 by stanaka          ###   ########.fr       */
+/*   Updated: 2019/08/30 19:35:04 by stanaka          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,11 @@ size_t				ft_count_words(char const *s, char c);
 size_t				ft_count_letters(char const *s, char c, size_t j);
 size_t				ft_count(int n);
 char				*ft_is_space(const char *s);
+
+char				**ft_strsplit2(char const *s, char c, char d);
+size_t				ft_c2(char const *s, char c, char d);
+size_t				ft_count_letters2(char const *s, char c, char d, size_t j);
+
+char	**ft_strsplit3(int ac, char **av, char c);
 
 #endif
